@@ -64,3 +64,22 @@ argocd login localhost:8080
 ----
 argocd account update-password
 ----
+
+== Create An Application From A Git Repository
+
+=== Creating Apps Via CLI
+
+[source,bash]
+----
+kubectl config set-context --current --namespace=argocd
+----
+
+[source,bash]
+----
+argocd app create guestbook \
+    --repo https://github.com/argoproj/argocd-example-apps.git \
+    --path guestbook \
+    --dest-server https://kubernetes.default.svc \
+    --dest-namespace default
+
+----
